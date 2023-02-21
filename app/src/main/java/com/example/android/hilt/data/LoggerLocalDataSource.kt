@@ -20,11 +20,17 @@ import android.os.Handler
 import android.os.Looper
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
+import javax.inject.Inject
+import javax.inject.Scope
+import javax.inject.Singleton
 
 /**
  * Data manager class that handles data manipulation between the database and the UI.
+ * HILt: Since we want the application container to always provide the same instance
+ * of LoggerLocalDataSource, we annotate its class with @Singleton
  */
-class LoggerLocalDataSource(private val logDao: LogDao) {
+@Singleton
+class LoggerLocalDataSource @Inject constructor(private val logDao: LogDao) {
 
     private val executorService: ExecutorService = Executors.newFixedThreadPool(4)
     private val mainThreadHandler by lazy {

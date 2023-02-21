@@ -35,8 +35,9 @@ class ServiceLocator(applicationContext: Context) {
 
     val loggerLocalDataSource = LoggerLocalDataSource(logsDatabase.logDao())
 
+    @Deprecated(message = "Replaced with HILT")
     fun provideDateFormatter() = DateFormatter()
-
+    @Deprecated("Replaced with HILT")
     fun provideNavigator(activity: FragmentActivity): AppNavigator {
         return AppNavigatorImpl(activity)
     }
