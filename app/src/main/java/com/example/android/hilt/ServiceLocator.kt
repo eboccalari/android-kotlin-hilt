@@ -24,7 +24,7 @@ import com.example.android.hilt.data.LoggerLocalDataSource
 import com.example.android.hilt.navigator.AppNavigator
 import com.example.android.hilt.navigator.AppNavigatorImpl
 import com.example.android.hilt.util.DateFormatter
-
+@Deprecated("Replaced with HILT")
 class ServiceLocator(applicationContext: Context) {
 
     private val logsDatabase = Room.databaseBuilder(
