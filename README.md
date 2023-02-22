@@ -1,6 +1,7 @@
 # Using Hilt in your Android app
 
 This folder contains the source code for the "Using Hilt in your Android app" codelab.
+https://developer.android.com/codelabs/android-hilt
 
 The codelab is built in multiple GitHub branches:
 * `main` is the codelab's starting point.

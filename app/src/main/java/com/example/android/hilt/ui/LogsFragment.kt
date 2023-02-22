@@ -28,7 +28,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.android.hilt.LogApplication
 import com.example.android.hilt.R
 import com.example.android.hilt.data.Log
+import com.example.android.hilt.data.LoggerDataSource
 import com.example.android.hilt.data.LoggerLocalDataSource
+import com.example.android.hilt.di.InMemoryLogger
 import com.example.android.hilt.util.DateFormatter
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -39,7 +41,13 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class LogsFragment : Fragment() {
 
-    @Inject lateinit var logger: LoggerLocalDataSource
+    /**
+     * If you want to change the database implementation you want to use, you just need to annotate
+     * the injected fields with @DatabaseLogger instead of @InMemoryLogger.
+     */
+    @InMemoryLogger
+    @Inject lateinit var logger: LoggerDataSource
+
     @Inject lateinit var dateFormatter: DateFormatter
 
     private lateinit var recyclerView: RecyclerView
