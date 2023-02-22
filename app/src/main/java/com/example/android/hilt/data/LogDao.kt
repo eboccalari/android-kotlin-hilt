@@ -16,6 +16,7 @@
 
 package com.example.android.hilt.data
 
+import android.database.Cursor
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
@@ -34,4 +35,19 @@ interface LogDao {
 
     @Query("DELETE FROM logs")
     fun nukeTable()
+
+    /**
+     * We want to be able to export our logs outside our application process.
+     * For that, we need to use a ContentProvider. We're only allowing consumers to query one
+     * specific log (given an id) or all the logs from the app using a ContentProvider.
+     * We'll be using the Room database to retrieve the data. Therefore, the LogDao class should
+     * expose methods that return the required information using a database Cursor.
+     *
+     */
+    @Query("SELECT * FROM logs ORDER BY id DESC")
+    fun selectAllLogsCursor(): Cursor
+
+    @Query("SELECT * FROM logs WHERE id = :id")
+    fun selectLogById(id: Long): Cursor?
+
 }
